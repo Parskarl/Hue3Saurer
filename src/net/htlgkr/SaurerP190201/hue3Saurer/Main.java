@@ -2,21 +2,36 @@ package net.htlgkr.SaurerP190201.hue3Saurer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Stream;
 
-public class Main {
+public class Main{
 
-    static ArrayList<weapons> weap = new ArrayList<>();
+    List<weapons> weap = new ArrayList<>();
     static String FILENAME = "src/weapons.csv";
     public static void main(String[] args)
     {
-        readfile();
-        Stream<weapons> st = weap.stream();
+        Main main = new Main();
+        main.readfile();
+        Printable p = (w -> w.forEach(System.out::println));
+
+        main.sortfordamage();
+        p.print(main.weap);
+
+        System.out.println();
+        main.sortforcombatType();
+        p.print(main.weap);
+
+        System.out.println();
+        main.sortfordamageType();
+        p.print(main.weap);
+
+        System.out.println();
+        main.sortforname();
+        p.print(main.weap);
     }
 
-    public static void readfile()
+    public void readfile()
     {
         try {
             Scanner s = new Scanner(new File(FILENAME));
@@ -32,4 +47,22 @@ public class Main {
             }
         } catch (FileNotFoundException e){e.printStackTrace();}
     }
+
+    public void sortfordamage()
+    {
+        Collections.sort(weap, Comparator.comparingInt(p -> p.damage));
+    }
+    public void sortforcombatType()
+    {
+        Collections.sort(weap, Comparator.comparing(p -> p.combatType));
+    }
+    public void sortfordamageType()
+    {
+        Collections.sort(weap, Comparator.comparing(p -> p.damageType));
+    }
+    public void sortforname()
+    {
+        Collections.sort(weap, Comparator.comparing(p -> p.name));
+    }
+
 }

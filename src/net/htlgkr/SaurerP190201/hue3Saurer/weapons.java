@@ -22,14 +22,6 @@ public class weapons
 
     @Override
     public String toString() {
-        return "weapons{" +
-                "name='" + name + '\'' +
-                ", combatType=" + combatType +
-                ", damageType=" + damageType +
-                ", damage=" + damage +
-                ", speed=" + speed +
-                ", strengt=" + strengt +
-                ", value=" + value +
-                '}';
+        return name+" "+combatType+" "+damageType+" "+damage+" "+speed+" "+strengt+" "+value;
     }
 }
