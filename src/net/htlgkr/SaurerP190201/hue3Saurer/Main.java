@@ -1,18 +1,28 @@
 package net.htlgkr.SaurerP190201.hue3Saurer;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 public class Main{
 
-    List<weapons> weap = new ArrayList<>();
-    static String FILENAME = "src/weapons.csv";
+    List<Weapon> weap = new ArrayList<>();
+    List<String> st = new ArrayList<>();
     public static void main(String[] args)
     {
         Main main = new Main();
         main.readfile();
+        main.st.remove(0);
+        for(String s: main.st)
+        {
+            String[] a = s.split(";");
+            combatType ct = combatType.getDT(a[1]);
+            damageType dt = damageType.getCT(a[2]);
+            Weapon w = new Weapon(a[0],ct,dt,Integer.parseInt(a[3]),Integer.parseInt(a[4]),Integer.parseInt(a[5]),Integer.parseInt(a[6]));
+            main.weap.add(w);
+        }
         Printable p = (w -> w.forEach(System.out::println));
 
         main.sortfordamage();
@@ -29,13 +39,17 @@ public class Main{
         System.out.println();
         main.sortforname();
         p.print(main.weap);
+
+        //TODO Aufgabe 1.6 Tabelle;
     }
 
     public void readfile()
     {
-        try {
-            Scanner s = new Scanner(new File(FILENAME));
-            s.nextLine();
+        String FILENAME = "src/weapons.csv";
+        try{
+            Files.lines(Path.of(FILENAME)).collect(Collectors.toCollection(() -> st));}
+        catch (IOException e){System.out.println("Nix geht");}
+            /*s.nextLine();
             while(s.hasNextLine())
             {
                 String e = s.nextLine();
@@ -44,8 +58,7 @@ public class Main{
                 damageType dt = damageType.getCT(a[2]);
                 weapons w = new weapons(a[0],ct,dt,Integer.parseInt(a[3]),Integer.parseInt(a[4]),Integer.parseInt(a[5]),Integer.parseInt(a[6]));
                 weap.add(w);
-            }
-        } catch (FileNotFoundException e){e.printStackTrace();}
+            }*/
     }
 
     public void sortfordamage()

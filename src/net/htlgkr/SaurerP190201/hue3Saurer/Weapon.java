@@ -1,6 +1,6 @@
 package net.htlgkr.SaurerP190201.hue3Saurer;
 
-public class weapons
+public class Weapon
 {
     String name;
     combatType combatType;
@@ -10,7 +10,7 @@ public class weapons
     int strengt;
     int value;
 
-    public weapons(String name, net.htlgkr.SaurerP190201.hue3Saurer.combatType combatType, net.htlgkr.SaurerP190201.hue3Saurer.damageType damageType, int damage, int speed, int strengt, int value) {
+    public Weapon(String name, net.htlgkr.SaurerP190201.hue3Saurer.combatType combatType, net.htlgkr.SaurerP190201.hue3Saurer.damageType damageType, int damage, int speed, int strengt, int value) {
         this.name = name;
         this.combatType = combatType;
         this.damageType = damageType;

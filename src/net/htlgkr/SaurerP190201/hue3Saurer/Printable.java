@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface Printable
 {
-    void print(List<weapons> weapons);
+    void print(List<Weapon> Weapon);
 }
