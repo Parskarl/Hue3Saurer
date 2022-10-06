@@ -23,24 +23,36 @@ public class Main{
             Weapon w = new Weapon(a[0],ct,dt,Integer.parseInt(a[3]),Integer.parseInt(a[4]),Integer.parseInt(a[5]),Integer.parseInt(a[6]));
             main.weap.add(w);
         }
-        Printable p = (w -> w.forEach(System.out::println));
+        Printable pr = (w -> w.forEach(System.out::println));
 
         main.sortfordamage();
-        p.print(main.weap);
+        pr.print(main.weap);
 
         System.out.println();
         main.sortforcombatType();
-        p.print(main.weap);
+        pr.print(main.weap);
 
         System.out.println();
         main.sortfordamageType();
-        p.print(main.weap);
+        pr.print(main.weap);
 
         System.out.println();
         main.sortforname();
-        p.print(main.weap);
+        pr.print(main.weap);
 
-        //TODO Aufgabe 1.6 Tabelle;
+        Printable p = (n) ->
+        {
+            System.out.println("_____________________________________________________________________________________");
+            System.out.println("|      Name        |  Combattype  |  Damagetype  | Damage | Speed | Strength | Value |");
+            System.out.println("_____________________________________________________________________________________");
+            for(Weapon w : n)
+            {
+                System.out.printf("| %-17s | %-12s | %-12s | %4d | %4d | %5d | %6d |", w.getName(), w.getCombatType(), w.getDamageType(), w.getDamage(), w.getSpeed(), w.getStrengt(), w.getValue());
+                System.out.println(" ");
+            }
+            System.out.println("_____________________________________________________________________________________");
+        };
+        p.print(main.weap);
     }
 
     public void readfile()
