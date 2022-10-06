@@ -49,6 +49,15 @@ public class Main{
         try{
             Files.lines(Path.of(FILENAME)).collect(Collectors.toCollection(() -> st));}
         catch (IOException e){System.out.println("Nix geht");}
+        st.remove(0);
+        for(String s: st)
+        {
+            String[] a = s.split(";");
+            combatType ct = combatType.getDT(a[1]);
+            damageType dt = damageType.getCT(a[2]);
+            Weapon w = new Weapon(a[0],ct,dt,Integer.parseInt(a[3]),Integer.parseInt(a[4]),Integer.parseInt(a[5]),Integer.parseInt(a[6]));
+            weap.add(w);
+        }
             /*s.nextLine();
             while(s.hasNextLine())
             {
